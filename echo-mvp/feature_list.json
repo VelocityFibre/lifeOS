@@ -1,0 +1,2303 @@
+[
+  {
+    "category": "functional",
+    "description": "Backend server starts successfully on port 3001",
+    "steps": [
+      "Step 1: Navigate to mastra-backend directory",
+      "Step 2: Run 'npm run api' command",
+      "Step 3: Verify server starts without errors",
+      "Step 4: Check process is running on port 3001"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Health endpoint responds with status ok",
+    "steps": [
+      "Step 1: Start backend server",
+      "Step 2: Send GET request to http://localhost:3001/health",
+      "Step 3: Verify response contains {\"status\": \"ok\"}",
+      "Step 4: Verify HTTP status code is 200"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Port 3001 conflict is resolved before server starts",
+    "steps": [
+      "Step 1: Check if port 3001 is in use with lsof -ti:3001",
+      "Step 2: Kill existing process if found",
+      "Step 3: Start backend server",
+      "Step 4: Verify successful startup"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "OpenAI API key is properly configured in .env",
+    "steps": [
+      "Step 1: Navigate to mastra-backend directory",
+      "Step 2: Check .env file exists",
+      "Step 3: Verify OPENAI_API_KEY variable is present",
+      "Step 4: Verify key is not empty or placeholder"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Gmail OAuth configuration is complete",
+    "steps": [
+      "Step 1: Navigate to https://developers.google.com/oauthplayground",
+      "Step 2: Select Gmail API v1 scopes",
+      "Step 3: Authorize and get access token",
+      "Step 4: Add token to .env file",
+      "Step 5: Verify token is valid"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent endpoint is accessible",
+    "steps": [
+      "Step 1: Start backend server",
+      "Step 2: Send GET request to http://localhost:3001/api/agents/mail",
+      "Step 3: Verify endpoint responds",
+      "Step 4: Verify no error messages"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent can read recent emails from Gmail",
+    "steps": [
+      "Step 1: Configure Gmail OAuth token",
+      "Step 2: Send request to @mail agent to read recent emails",
+      "Step 3: Verify emails are returned",
+      "Step 4: Verify email format includes sender, subject, date",
+      "Step 5: Verify at least one email is retrieved"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent can search emails by query",
+    "steps": [
+      "Step 1: Configure Gmail OAuth token",
+      "Step 2: Send search query to @mail agent (e.g., 'from:someone@example.com')",
+      "Step 3: Verify search results are returned",
+      "Step 4: Verify results match the search criteria"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent can send a test email",
+    "steps": [
+      "Step 1: Configure Gmail OAuth token",
+      "Step 2: Send request to @mail agent to send email",
+      "Step 3: Provide recipient, subject, and body",
+      "Step 4: Verify email is sent successfully",
+      "Step 5: Check sent folder to confirm delivery"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent can get email summaries",
+    "steps": [
+      "Step 1: Configure Gmail OAuth token",
+      "Step 2: Request email summary from @mail agent",
+      "Step 3: Verify summary includes key information",
+      "Step 4: Verify summary is concise and readable"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent can filter unread emails",
+    "steps": [
+      "Step 1: Configure Gmail OAuth token",
+      "Step 2: Request unread emails from @mail agent",
+      "Step 3: Verify only unread emails are returned",
+      "Step 4: Verify read emails are excluded"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent can filter important emails",
+    "steps": [
+      "Step 1: Configure Gmail OAuth token",
+      "Step 2: Request important emails from @mail agent",
+      "Step 3: Verify only important/starred emails are returned",
+      "Step 4: Verify filtering is accurate"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Frontend dependencies install successfully",
+    "steps": [
+      "Step 1: Navigate to expo-app directory",
+      "Step 2: Run 'npm install'",
+      "Step 3: Verify all dependencies install without errors",
+      "Step 4: Check node_modules directory is created"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Expo app starts in web mode",
+    "steps": [
+      "Step 1: Navigate to expo-app directory",
+      "Step 2: Run 'npx expo start'",
+      "Step 3: Select web option",
+      "Step 4: Verify app opens in browser",
+      "Step 5: Verify no fatal errors in console"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Frontend connects to backend API successfully",
+    "steps": [
+      "Step 1: Start backend server on port 3001",
+      "Step 2: Start Expo app",
+      "Step 3: Update API endpoint to http://localhost:3001",
+      "Step 4: Verify connection is established",
+      "Step 5: Check network requests show successful responses"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Chat interface renders properly on web",
+    "steps": [
+      "Step 1: Start Expo app in web mode",
+      "Step 2: Navigate to chat interface",
+      "Step 3: Verify message input field is visible",
+      "Step 4: Verify send button is visible",
+      "Step 5: Verify chat area displays correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can type a message in the chat interface",
+    "steps": [
+      "Step 1: Open chat interface",
+      "Step 2: Click on message input field",
+      "Step 3: Type a test message",
+      "Step 4: Verify text appears in input field"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can send a message in the chat interface",
+    "steps": [
+      "Step 1: Open chat interface",
+      "Step 2: Type a test message",
+      "Step 3: Click send button or press Enter",
+      "Step 4: Verify message appears in chat history",
+      "Step 5: Verify input field clears after sending"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent can be invoked with @mention",
+    "steps": [
+      "Step 1: Open chat interface",
+      "Step 2: Type '@mail' in message input",
+      "Step 3: Type a query like 'show my recent emails'",
+      "Step 4: Send the message",
+      "Step 5: Verify @mail agent responds"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mention autocomplete shows available agents",
+    "steps": [
+      "Step 1: Open chat interface",
+      "Step 2: Type '@' in message input",
+      "Step 3: Verify autocomplete dropdown appears",
+      "Step 4: Verify @mail, @cal, @mem agents are listed"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Typing indicator shows when agent is processing",
+    "steps": [
+      "Step 1: Send a message to @mail agent",
+      "Step 2: Observe chat interface during processing",
+      "Step 3: Verify typing indicator appears",
+      "Step 4: Verify indicator disappears when response arrives"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent responses display with proper formatting",
+    "steps": [
+      "Step 1: Send query to @mail agent",
+      "Step 2: Wait for response",
+      "Step 3: Verify response is formatted correctly",
+      "Step 4: Verify markdown rendering works if applicable"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Email data from @mail agent displays correctly in UI",
+    "steps": [
+      "Step 1: Request recent emails from @mail agent",
+      "Step 2: Wait for response",
+      "Step 3: Verify email sender is displayed",
+      "Step 4: Verify email subject is displayed",
+      "Step 5: Verify email date/time is displayed",
+      "Step 6: Verify email preview/body is shown"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can send email through chat interface end-to-end",
+    "steps": [
+      "Step 1: Type '@mail send email to test@example.com'",
+      "Step 2: Provide subject and body when prompted",
+      "Step 3: Confirm sending",
+      "Step 4: Verify success message appears",
+      "Step 5: Verify email appears in sent folder",
+      "Step 6: Verify recipient receives email"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Error messages display user-friendly text",
+    "steps": [
+      "Step 1: Trigger an error (e.g., invalid OAuth token)",
+      "Step 2: Verify error message appears in chat",
+      "Step 3: Verify message is human-readable",
+      "Step 4: Verify technical details are hidden or minimal"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Loading states show during API calls",
+    "steps": [
+      "Step 1: Send a query to @mail agent",
+      "Step 2: Observe UI during processing",
+      "Step 3: Verify loading indicator is visible",
+      "Step 4: Verify user knows system is working"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "OAuth token refresh works automatically",
+    "steps": [
+      "Step 1: Wait for OAuth token to expire (after 1 hour)",
+      "Step 2: Send query to @mail agent",
+      "Step 3: Verify token is automatically refreshed",
+      "Step 4: Verify query completes successfully"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Offline mode shows clear status",
+    "steps": [
+      "Step 1: Disconnect from network",
+      "Step 2: Open chat interface",
+      "Step 3: Verify offline indicator is visible",
+      "Step 4: Try to send a message",
+      "Step 5: Verify appropriate offline message is shown"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Response time is acceptable (< 2 seconds)",
+    "steps": [
+      "Step 1: Send simple query to @mail agent",
+      "Step 2: Measure time from send to response",
+      "Step 3: Verify response arrives in under 2 seconds",
+      "Step 4: Repeat test 3 times for consistency"
+    ],
+    "passes": false
+  },
+  {
+    "category": "style",
+    "description": "Chat interface has WhatsApp-style message bubbles",
+    "steps": [
+      "Step 1: Open chat interface",
+      "Step 2: Send a few messages",
+      "Step 3: Take screenshot",
+      "Step 4: Verify user messages have distinct bubble style",
+      "Step 5: Verify agent messages have different bubble style",
+      "Step 6: Verify bubbles are visually similar to WhatsApp"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Message timestamps are visible and formatted properly",
+    "steps": [
+      "Step 1: Send several messages",
+      "Step 2: Observe timestamps on messages",
+      "Step 3: Verify timestamps are visible",
+      "Step 4: Verify format is readable (e.g., '2:30 PM')"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Mobile UI is touch-optimized with adequate button sizes",
+    "steps": [
+      "Step 1: Open app on mobile device or simulator",
+      "Step 2: Test tapping all interactive elements",
+      "Step 3: Verify buttons are at least 44x44 points",
+      "Step 4: Verify no accidental taps occur"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "NativeWind/Tailwind styling renders correctly",
+    "steps": [
+      "Step 1: Open app in web and mobile",
+      "Step 2: Review all UI components",
+      "Step 3: Verify Tailwind classes are applied",
+      "Step 4: Verify styling is consistent"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Backend handles concurrent requests correctly",
+    "steps": [
+      "Step 1: Send 5 requests to @mail agent simultaneously",
+      "Step 2: Verify all requests are processed",
+      "Step 3: Verify no race conditions occur",
+      "Step 4: Verify all responses are correct"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Email attachments are handled properly",
+    "steps": [
+      "Step 1: Request emails with attachments from @mail agent",
+      "Step 2: Verify attachments are detected",
+      "Step 3: Verify attachment names and types are shown",
+      "Step 4: Verify attachment count is accurate"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent handles empty inbox gracefully",
+    "steps": [
+      "Step 1: Use account with no emails",
+      "Step 2: Request recent emails",
+      "Step 3: Verify friendly message is shown",
+      "Step 4: Verify no errors occur"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent handles rate limiting gracefully",
+    "steps": [
+      "Step 1: Send many requests rapidly to trigger rate limit",
+      "Step 2: Verify rate limit error is caught",
+      "Step 3: Verify user-friendly message is shown",
+      "Step 4: Verify app doesn't crash"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Backend logs errors appropriately",
+    "steps": [
+      "Step 1: Trigger an error condition",
+      "Step 2: Check backend console/logs",
+      "Step 3: Verify error is logged with details",
+      "Step 4: Verify sensitive data is not logged"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Environment variables are validated on startup",
+    "steps": [
+      "Step 1: Remove OPENAI_API_KEY from .env",
+      "Step 2: Try to start backend",
+      "Step 3: Verify clear error message about missing key",
+      "Step 4: Verify server doesn't start with incomplete config"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Gmail API scopes are correctly configured",
+    "steps": [
+      "Step 1: Review OAuth configuration",
+      "Step 2: Verify gmail.readonly scope is included",
+      "Step 3: Verify gmail.send scope is included",
+      "Step 4: Verify no unnecessary scopes are requested"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent can handle HTML emails",
+    "steps": [
+      "Step 1: Request emails containing HTML content",
+      "Step 2: Verify HTML is parsed correctly",
+      "Step 3: Verify text is extracted or rendered",
+      "Step 4: Verify no rendering errors"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent can handle plain text emails",
+    "steps": [
+      "Step 1: Request emails with plain text only",
+      "Step 2: Verify text is displayed correctly",
+      "Step 3: Verify formatting is preserved",
+      "Step 4: Verify no parsing errors"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Conversation history is stored locally",
+    "steps": [
+      "Step 1: Send several messages in chat",
+      "Step 2: Close and reopen the app",
+      "Step 3: Verify chat history is preserved",
+      "Step 4: Verify all messages are visible"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can scroll through long conversation history",
+    "steps": [
+      "Step 1: Create a conversation with 50+ messages",
+      "Step 2: Scroll to top of conversation",
+      "Step 3: Verify smooth scrolling",
+      "Step 4: Verify all messages are accessible"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@cal agent endpoint exists (even if not implemented)",
+    "steps": [
+      "Step 1: Send request to @cal agent endpoint",
+      "Step 2: Verify endpoint responds",
+      "Step 3: Verify appropriate message if not yet implemented"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mem agent endpoint exists (even if not implemented)",
+    "steps": [
+      "Step 1: Send request to @mem agent endpoint",
+      "Step 2: Verify endpoint responds",
+      "Step 3: Verify appropriate message if not yet implemented"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Backend gracefully handles invalid agent names",
+    "steps": [
+      "Step 1: Send message to non-existent agent like '@fake'",
+      "Step 2: Verify error is caught",
+      "Step 3: Verify user-friendly error message",
+      "Step 4: Verify app doesn't crash"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Chat input field has proper keyboard handling",
+    "steps": [
+      "Step 1: Click on chat input field",
+      "Step 2: Verify keyboard appears on mobile",
+      "Step 3: Type message",
+      "Step 4: Press Enter to send",
+      "Step 5: Verify message sends and keyboard behavior is correct"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Markdown formatting renders in agent responses",
+    "steps": [
+      "Step 1: Request formatted response from agent",
+      "Step 2: Verify bold text renders correctly",
+      "Step 3: Verify italic text renders correctly",
+      "Step 4: Verify lists render correctly",
+      "Step 5: Verify code blocks render correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Links in messages are clickable",
+    "steps": [
+      "Step 1: Receive message with URL from agent",
+      "Step 2: Verify link is detected and styled",
+      "Step 3: Click the link",
+      "Step 4: Verify link opens correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "App has consistent color scheme throughout",
+    "steps": [
+      "Step 1: Navigate through all screens",
+      "Step 2: Take screenshots of each screen",
+      "Step 3: Verify colors are consistent",
+      "Step 4: Verify brand colors are used appropriately"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Typography is consistent and readable",
+    "steps": [
+      "Step 1: Review all text elements",
+      "Step 2: Verify font sizes are appropriate",
+      "Step 3: Verify font weights are used consistently",
+      "Step 4: Verify text is readable on all backgrounds"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "App works on iOS simulator",
+    "steps": [
+      "Step 1: Start Expo app",
+      "Step 2: Press 'i' to open iOS simulator",
+      "Step 3: Wait for app to load",
+      "Step 4: Verify app launches successfully",
+      "Step 5: Test basic functionality"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App works on Android emulator",
+    "steps": [
+      "Step 1: Start Expo app",
+      "Step 2: Press 'a' to open Android emulator",
+      "Step 3: Wait for app to load",
+      "Step 4: Verify app launches successfully",
+      "Step 5: Test basic functionality"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Backend API has proper CORS configuration",
+    "steps": [
+      "Step 1: Make request from frontend to backend",
+      "Step 2: Check network console for CORS errors",
+      "Step 3: Verify requests complete successfully",
+      "Step 4: Verify proper CORS headers are set"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API endpoints return proper HTTP status codes",
+    "steps": [
+      "Step 1: Test successful request - verify 200 status",
+      "Step 2: Test invalid request - verify 400 status",
+      "Step 3: Test unauthorized request - verify 401 status",
+      "Step 4: Test not found - verify 404 status",
+      "Step 5: Test server error - verify 500 status"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API responses have consistent JSON structure",
+    "steps": [
+      "Step 1: Make various API requests",
+      "Step 2: Examine response structure",
+      "Step 3: Verify all responses follow same pattern",
+      "Step 4: Verify error responses are consistent"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "OpenAI API integration works correctly",
+    "steps": [
+      "Step 1: Send natural language query to agent",
+      "Step 2: Verify query is processed by GPT-4o-mini",
+      "Step 3: Verify response is contextually appropriate",
+      "Step 4: Verify API key is used correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "OpenAI API errors are handled gracefully",
+    "steps": [
+      "Step 1: Trigger OpenAI API error (e.g., invalid key)",
+      "Step 2: Verify error is caught",
+      "Step 3: Verify user sees friendly error message",
+      "Step 4: Verify app remains functional"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Mastra framework is properly initialized",
+    "steps": [
+      "Step 1: Check backend startup logs",
+      "Step 2: Verify Mastra initializes successfully",
+      "Step 3: Verify agents are registered",
+      "Step 4: Verify no initialization errors"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent routing works correctly based on @mentions",
+    "steps": [
+      "Step 1: Send message to @mail agent",
+      "Step 2: Verify @mail agent responds",
+      "Step 3: Send message to different agent",
+      "Step 4: Verify correct agent responds each time"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Multiple users can use the system simultaneously (multi-user test)",
+    "steps": [
+      "Step 1: Open app in two different browsers/devices",
+      "Step 2: Send messages from both simultaneously",
+      "Step 3: Verify both receive responses",
+      "Step 4: Verify no cross-contamination of data"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Session management works correctly",
+    "steps": [
+      "Step 1: Start a session and send messages",
+      "Step 2: Close app without logging out",
+      "Step 3: Reopen app",
+      "Step 4: Verify session is restored",
+      "Step 5: Verify can continue where left off"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Network timeout errors are handled properly",
+    "steps": [
+      "Step 1: Simulate slow network connection",
+      "Step 2: Send message to agent",
+      "Step 3: Wait for timeout",
+      "Step 4: Verify timeout error is caught",
+      "Step 5: Verify user-friendly error message"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Empty messages are prevented from being sent",
+    "steps": [
+      "Step 1: Focus on chat input field",
+      "Step 2: Try to send empty message",
+      "Step 3: Verify message is not sent",
+      "Step 4: Verify send button is disabled when input is empty"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Very long messages are handled correctly",
+    "steps": [
+      "Step 1: Type a message with 5000+ characters",
+      "Step 2: Send the message",
+      "Step 3: Verify message is sent or appropriate limit message shown",
+      "Step 4: Verify UI handles long text gracefully"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Special characters in messages are handled correctly",
+    "steps": [
+      "Step 1: Type message with special characters (emoji, symbols)",
+      "Step 2: Send the message",
+      "Step 3: Verify characters display correctly",
+      "Step 4: Verify no encoding issues"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Email search with special characters works",
+    "steps": [
+      "Step 1: Search for email with special characters in query",
+      "Step 2: Verify search completes",
+      "Step 3: Verify results are accurate",
+      "Step 4: Verify no parsing errors"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent can handle multiple email threads",
+    "steps": [
+      "Step 1: Request emails from @mail agent",
+      "Step 2: Verify multiple threads are returned",
+      "Step 3: Verify threads are organized correctly",
+      "Step 4: Verify thread count is accurate"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Email preview shows appropriate length of content",
+    "steps": [
+      "Step 1: Request emails with long content",
+      "Step 2: View email previews",
+      "Step 3: Verify previews are truncated appropriately",
+      "Step 4: Verify full content is accessible"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Date formatting is consistent across the app",
+    "steps": [
+      "Step 1: View dates in various contexts (emails, messages, etc.)",
+      "Step 2: Verify all dates use same format",
+      "Step 3: Verify dates are localized appropriately",
+      "Step 4: Verify relative dates work ('2 hours ago')"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Time zones are handled correctly in email dates",
+    "steps": [
+      "Step 1: Request emails from different time zones",
+      "Step 2: Verify dates are converted to local time",
+      "Step 3: Verify time zone information is accurate",
+      "Step 4: Verify no date/time confusion"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Error states have appropriate visual styling",
+    "steps": [
+      "Step 1: Trigger various error conditions",
+      "Step 2: Observe error message styling",
+      "Step 3: Verify errors are visually distinct (red color, icon, etc.)",
+      "Step 4: Verify errors are noticeable but not alarming"
+    ],
+    "passes": false
+  },
+  {
+    "category": "style",
+    "description": "Success states have appropriate visual feedback",
+    "steps": [
+      "Step 1: Complete successful actions (send email, etc.)",
+      "Step 2: Observe success feedback",
+      "Step 3: Verify success is visually indicated",
+      "Step 4: Verify feedback is clear and positive"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App handles rapid message sending without issues",
+    "steps": [
+      "Step 1: Send 10 messages rapidly in succession",
+      "Step 2: Verify all messages are sent",
+      "Step 3: Verify all messages appear in chat",
+      "Step 4: Verify no messages are lost or duplicated"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Backend server can be stopped and restarted cleanly",
+    "steps": [
+      "Step 1: Start backend server",
+      "Step 2: Stop server with Ctrl+C",
+      "Step 3: Verify server stops cleanly",
+      "Step 4: Restart server",
+      "Step 5: Verify server starts successfully again"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Frontend hot reload works during development",
+    "steps": [
+      "Step 1: Start Expo app in development mode",
+      "Step 2: Make a code change in frontend",
+      "Step 3: Save the file",
+      "Step 4: Verify app reloads automatically",
+      "Step 5: Verify changes are reflected"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Backend auto-reload works during development",
+    "steps": [
+      "Step 1: Start backend in development mode",
+      "Step 2: Make a code change in backend",
+      "Step 3: Save the file",
+      "Step 4: Verify server restarts automatically",
+      "Step 5: Verify changes take effect"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Package.json scripts work correctly in backend",
+    "steps": [
+      "Step 1: Navigate to mastra-backend directory",
+      "Step 2: Run 'npm run api'",
+      "Step 3: Verify script executes correctly",
+      "Step 4: Test other npm scripts if present"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Package.json scripts work correctly in frontend",
+    "steps": [
+      "Step 1: Navigate to expo-app directory",
+      "Step 2: Run various npm scripts",
+      "Step 3: Verify scripts execute correctly",
+      "Step 4: Verify no script errors"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Node.js version compatibility is verified",
+    "steps": [
+      "Step 1: Check current Node version (should be v22.20.0)",
+      "Step 2: Run backend with this version",
+      "Step 3: Verify no compatibility issues",
+      "Step 4: Verify all features work correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Dependencies are up-to-date and secure",
+    "steps": [
+      "Step 1: Run 'npm audit' in backend directory",
+      "Step 2: Run 'npm audit' in frontend directory",
+      "Step 3: Verify no critical vulnerabilities",
+      "Step 4: Review any warnings"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "@mail agent preserves email thread context",
+    "steps": [
+      "Step 1: Ask about a specific email thread",
+      "Step 2: Ask follow-up questions about same thread",
+      "Step 3: Verify agent maintains context",
+      "Step 4: Verify responses are contextually appropriate"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent can understand natural language date queries",
+    "steps": [
+      "Step 1: Ask agent for 'emails from yesterday'",
+      "Step 2: Verify agent interprets date correctly",
+      "Step 3: Verify results match date range",
+      "Step 4: Test other natural date phrases ('last week', 'this month')"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent can understand natural language sender queries",
+    "steps": [
+      "Step 1: Ask agent for 'emails from John'",
+      "Step 2: Verify agent finds correct sender",
+      "Step 3: Verify all results are from that sender",
+      "Step 4: Test variations of name queries"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent can combine multiple search criteria",
+    "steps": [
+      "Step 1: Ask for 'unread emails from John about project'",
+      "Step 2: Verify agent parses multiple criteria",
+      "Step 3: Verify results match all criteria",
+      "Step 4: Verify search is accurate"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent provides helpful suggestions when no results found",
+    "steps": [
+      "Step 1: Search for emails that don't exist",
+      "Step 2: Verify agent responds gracefully",
+      "Step 3: Verify agent suggests alternatives",
+      "Step 4: Verify user is guided appropriately"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent can summarize multiple emails at once",
+    "steps": [
+      "Step 1: Request summary of recent emails",
+      "Step 2: Verify agent processes multiple emails",
+      "Step 3: Verify summary is coherent and useful",
+      "Step 4: Verify key information is included"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent respects email privacy and security",
+    "steps": [
+      "Step 1: Verify OAuth scopes are minimal",
+      "Step 2: Verify emails are not logged in plain text",
+      "Step 3: Verify sensitive data is handled securely",
+      "Step 4: Review security practices"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Frontend handles backend downtime gracefully",
+    "steps": [
+      "Step 1: Stop backend server",
+      "Step 2: Try to send message from frontend",
+      "Step 3: Verify appropriate error message",
+      "Step 4: Verify app doesn't crash",
+      "Step 5: Restart backend and verify recovery"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Chat history persists across page refreshes",
+    "steps": [
+      "Step 1: Send several messages",
+      "Step 2: Refresh the page",
+      "Step 3: Verify chat history is restored",
+      "Step 4: Verify all messages are present"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "User can clear chat history",
+    "steps": [
+      "Step 1: Accumulate chat history",
+      "Step 2: Find clear/delete option",
+      "Step 3: Clear history",
+      "Step 4: Verify history is deleted",
+      "Step 5: Verify confirmation is requested before clearing"
+    ],
+    "passes": false
+  },
+  {
+    "category": "style",
+    "description": "App has appropriate spacing and padding throughout",
+    "steps": [
+      "Step 1: Review all UI components",
+      "Step 2: Verify spacing is consistent",
+      "Step 3: Verify padding follows design system",
+      "Step 4: Verify elements don't feel cramped"
+    ],
+    "passes": false
+  },
+  {
+    "category": "style",
+    "description": "Buttons have appropriate hover and active states",
+    "steps": [
+      "Step 1: Hover over various buttons",
+      "Step 2: Verify hover state is visible",
+      "Step 3: Click buttons and verify active state",
+      "Step 4: Verify states are visually clear"
+    ],
+    "passes": false
+  },
+  {
+    "category": "style",
+    "description": "Form inputs have clear focus indicators",
+    "steps": [
+      "Step 1: Tab through form inputs",
+      "Step 2: Verify focus ring is visible",
+      "Step 3: Verify focus indicator is accessible",
+      "Step 4: Verify keyboard navigation works"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Accessibility features work correctly (keyboard navigation)",
+    "steps": [
+      "Step 1: Navigate app using only keyboard",
+      "Step 2: Verify all interactive elements are reachable",
+      "Step 3: Verify tab order is logical",
+      "Step 4: Verify Enter/Space activate buttons"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Accessibility features work correctly (screen reader labels)",
+    "steps": [
+      "Step 1: Enable screen reader",
+      "Step 2: Navigate through app",
+      "Step 3: Verify all elements have appropriate labels",
+      "Step 4: Verify app is usable with screen reader"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App works correctly in light mode",
+    "steps": [
+      "Step 1: Set system to light mode",
+      "Step 2: Open app",
+      "Step 3: Verify all text is readable",
+      "Step 4: Verify colors are appropriate for light mode"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App works correctly in dark mode",
+    "steps": [
+      "Step 1: Set system to dark mode",
+      "Step 2: Open app",
+      "Step 3: Verify all text is readable",
+      "Step 4: Verify colors are appropriate for dark mode",
+      "Step 5: Verify no bright flashes"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App respects system theme preference",
+    "steps": [
+      "Step 1: Set system to light mode and open app",
+      "Step 2: Verify app uses light theme",
+      "Step 3: Switch system to dark mode",
+      "Step 4: Verify app switches to dark theme automatically"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Email sending validates recipient email format",
+    "steps": [
+      "Step 1: Try to send email to invalid address",
+      "Step 2: Verify validation error is shown",
+      "Step 3: Verify email is not sent",
+      "Step 4: Try with valid address and verify it works"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Email sending requires subject and body",
+    "steps": [
+      "Step 1: Try to send email without subject",
+      "Step 2: Verify appropriate prompt or error",
+      "Step 3: Try to send email without body",
+      "Step 4: Verify appropriate prompt or error"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent understands intent to compose new email",
+    "steps": [
+      "Step 1: Tell agent 'I want to email John'",
+      "Step 2: Verify agent initiates email composition",
+      "Step 3: Verify agent asks for necessary details",
+      "Step 4: Complete email flow and verify it works"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent can draft email based on natural language",
+    "steps": [
+      "Step 1: Say 'Draft email to John about meeting tomorrow'",
+      "Step 2: Verify agent generates draft",
+      "Step 3: Verify draft is contextually appropriate",
+      "Step 4: Verify user can review before sending"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can edit agent-drafted emails before sending",
+    "steps": [
+      "Step 1: Have agent draft an email",
+      "Step 2: Request changes to the draft",
+      "Step 3: Verify agent updates the draft",
+      "Step 4: Verify final version can be sent"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent confirms before sending emails",
+    "steps": [
+      "Step 1: Request to send an email",
+      "Step 2: Provide all details",
+      "Step 3: Verify agent asks for confirmation",
+      "Step 4: Confirm and verify email is sent",
+      "Step 5: Test cancellation before confirmation"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Large email volumes are handled efficiently",
+    "steps": [
+      "Step 1: Use account with 1000+ emails",
+      "Step 2: Request recent emails",
+      "Step 3: Verify response time is acceptable",
+      "Step 4: Verify results are paginated or limited appropriately"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Email search supports pagination",
+    "steps": [
+      "Step 1: Search for common term with many results",
+      "Step 2: Verify initial results are shown",
+      "Step 3: Request more results",
+      "Step 4: Verify pagination works correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent handles ambiguous queries gracefully",
+    "steps": [
+      "Step 1: Send vague query like 'show me stuff'",
+      "Step 2: Verify agent asks for clarification",
+      "Step 3: Provide clarification",
+      "Step 4: Verify agent completes task correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent maintains context across multiple interactions",
+    "steps": [
+      "Step 1: Ask agent about emails",
+      "Step 2: Ask follow-up questions using pronouns ('show me more from him')",
+      "Step 3: Verify agent maintains context",
+      "Step 4: Verify responses are contextually appropriate",
+      "Step 5: Test through 5+ interaction turns"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent can handle interruptions and topic changes",
+    "steps": [
+      "Step 1: Start conversation about emails",
+      "Step 2: Abruptly change topic to different query",
+      "Step 3: Verify agent handles change gracefully",
+      "Step 4: Verify previous context doesn't interfere"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "System handles OpenAI API token limits appropriately",
+    "steps": [
+      "Step 1: Send very long complex query",
+      "Step 2: Verify token limit is respected",
+      "Step 3: Verify graceful handling if limit exceeded",
+      "Step 4: Verify user is informed appropriately"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent responses are contextually relevant to queries",
+    "steps": [
+      "Step 1: Send various types of queries to agent",
+      "Step 2: Evaluate response relevance",
+      "Step 3: Verify agent stays on topic",
+      "Step 4: Verify responses are helpful"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Agent handles spelling mistakes in queries",
+    "steps": [
+      "Step 1: Send query with intentional typos",
+      "Step 2: Verify agent understands intent",
+      "Step 3: Verify agent responds appropriately",
+      "Step 4: Verify typos don't break functionality"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Loading indicators are visually pleasing",
+    "steps": [
+      "Step 1: Trigger loading states",
+      "Step 2: Observe loading animations",
+      "Step 3: Verify animations are smooth",
+      "Step 4: Verify loading states match app design"
+    ],
+    "passes": false
+  },
+  {
+    "category": "style",
+    "description": "Transitions between states are smooth",
+    "steps": [
+      "Step 1: Navigate between different states",
+      "Step 2: Observe transitions",
+      "Step 3: Verify no jarring jumps",
+      "Step 4: Verify animations enhance UX"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App handles device rotation correctly (mobile)",
+    "steps": [
+      "Step 1: Open app in portrait mode",
+      "Step 2: Rotate device to landscape",
+      "Step 3: Verify UI adapts correctly",
+      "Step 4: Verify no data loss during rotation"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App handles different screen sizes correctly",
+    "steps": [
+      "Step 1: Open app on small phone screen",
+      "Step 2: Open app on tablet screen",
+      "Step 3: Open app on desktop browser",
+      "Step 4: Verify responsive design works on all sizes"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Images and icons load correctly throughout app",
+    "steps": [
+      "Step 1: Navigate through all screens",
+      "Step 2: Verify all icons appear",
+      "Step 3: Verify no broken image placeholders",
+      "Step 4: Verify assets are optimized for size"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App bundle size is optimized",
+    "steps": [
+      "Step 1: Build app for production",
+      "Step 2: Check bundle size",
+      "Step 3: Verify size is reasonable for app type",
+      "Step 4: Identify any bloat if present"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App loads quickly on initial launch",
+    "steps": [
+      "Step 1: Clear app cache/data",
+      "Step 2: Launch app",
+      "Step 3: Measure time to interactive",
+      "Step 4: Verify launch time is under 3 seconds"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App uses minimal battery on mobile devices",
+    "steps": [
+      "Step 1: Use app normally for 30 minutes",
+      "Step 2: Check battery usage stats",
+      "Step 3: Verify app is not draining battery excessively",
+      "Step 4: Compare to similar apps"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App uses minimal data when on cellular connection",
+    "steps": [
+      "Step 1: Use app on cellular data",
+      "Step 2: Monitor data usage",
+      "Step 3: Verify data usage is minimal",
+      "Step 4: Verify no unnecessary data transfers"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Backend handles malformed requests safely",
+    "steps": [
+      "Step 1: Send malformed JSON to API",
+      "Step 2: Send requests with missing fields",
+      "Step 3: Verify server doesn't crash",
+      "Step 4: Verify appropriate error responses"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Backend has request size limits to prevent abuse",
+    "steps": [
+      "Step 1: Send very large request to backend",
+      "Step 2: Verify request is rejected if too large",
+      "Step 3: Verify appropriate error message",
+      "Step 4: Verify server remains stable"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Backend has rate limiting to prevent abuse",
+    "steps": [
+      "Step 1: Send many requests in rapid succession",
+      "Step 2: Verify rate limiting kicks in",
+      "Step 3: Verify appropriate error response",
+      "Step 4: Verify normal requests work after cooldown"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "API authentication works correctly (if implemented)",
+    "steps": [
+      "Step 1: Make request without auth token",
+      "Step 2: Verify request is rejected",
+      "Step 3: Make request with valid auth token",
+      "Step 4: Verify request succeeds"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Sensitive data is not exposed in API responses",
+    "steps": [
+      "Step 1: Review API responses",
+      "Step 2: Verify no OAuth tokens in responses",
+      "Step 3: Verify no API keys in responses",
+      "Step 4: Verify personal data is appropriately filtered"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Sensitive data is not exposed in frontend code",
+    "steps": [
+      "Step 1: Review frontend bundle",
+      "Step 2: Verify no API keys hardcoded",
+      "Step 3: Verify no secrets in source code",
+      "Step 4: Verify environment variables are used correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Error stack traces don't leak sensitive info in production",
+    "steps": [
+      "Step 1: Trigger error in production mode",
+      "Step 2: Review error message shown to user",
+      "Step 3: Verify stack trace is not exposed",
+      "Step 4: Verify minimal error details shown"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "HTTPS is enforced (or plan for production HTTPS)",
+    "steps": [
+      "Step 1: Review deployment configuration",
+      "Step 2: Verify HTTPS will be used in production",
+      "Step 3: Verify no mixed content warnings",
+      "Step 4: Plan SSL certificate setup"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Console logs don't contain sensitive information",
+    "steps": [
+      "Step 1: Use app while monitoring console",
+      "Step 2: Review all console output",
+      "Step 3: Verify no passwords or tokens logged",
+      "Step 4: Verify logging is appropriate for environment"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User data privacy is respected per requirements",
+    "steps": [
+      "Step 1: Review data handling practices",
+      "Step 2: Verify zero-knowledge principles where applicable",
+      "Step 3: Verify data is local-first",
+      "Step 4: Plan for E2E encryption implementation"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Email content is not unnecessarily stored on server",
+    "steps": [
+      "Step 1: Review backend data storage",
+      "Step 2: Verify emails are not persisted server-side",
+      "Step 3: Verify only necessary data cached temporarily",
+      "Step 4: Verify privacy principles are followed"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can export their data",
+    "steps": [
+      "Step 1: Find data export feature",
+      "Step 2: Request data export",
+      "Step 3: Verify export completes",
+      "Step 4: Verify exported data is complete and usable"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "User can delete their data",
+    "steps": [
+      "Step 1: Find data deletion feature",
+      "Step 2: Request data deletion",
+      "Step 3: Verify confirmation is requested",
+      "Step 4: Confirm deletion",
+      "Step 5: Verify data is completely removed"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Agent help/documentation is accessible",
+    "steps": [
+      "Step 1: Look for help command or documentation",
+      "Step 2: Request help from agent",
+      "Step 3: Verify helpful information is provided",
+      "Step 4: Verify users can learn how to use agents"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Agent can list its capabilities when asked",
+    "steps": [
+      "Step 1: Ask @mail agent 'what can you do?'",
+      "Step 2: Verify agent lists capabilities",
+      "Step 3: Verify list is accurate and complete",
+      "Step 4: Verify examples are provided"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "System provides onboarding for new users",
+    "steps": [
+      "Step 1: Launch app as new user",
+      "Step 2: Verify onboarding flow appears",
+      "Step 3: Complete onboarding",
+      "Step 4: Verify user understands how to use app"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "First-time Gmail connection has clear instructions",
+    "steps": [
+      "Step 1: Start OAuth flow for Gmail",
+      "Step 2: Verify clear instructions are shown",
+      "Step 3: Complete OAuth flow",
+      "Step 4: Verify user can successfully connect"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Gmail connection status is visible to user",
+    "steps": [
+      "Step 1: Check settings or status area",
+      "Step 2: Verify Gmail connection status shown",
+      "Step 3: Verify status updates when connection changes",
+      "Step 4: Verify clear indication of connected/disconnected"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "User can reconnect Gmail if connection is lost",
+    "steps": [
+      "Step 1: Simulate lost Gmail connection",
+      "Step 2: Verify user is notified",
+      "Step 3: Find reconnect option",
+      "Step 4: Complete reconnection",
+      "Step 5: Verify connection is restored"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "User can disconnect Gmail account",
+    "steps": [
+      "Step 1: Find disconnect/logout option",
+      "Step 2: Request disconnection",
+      "Step 3: Verify confirmation is requested",
+      "Step 4: Confirm disconnection",
+      "Step 5: Verify Gmail access is revoked"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Multiple Gmail accounts can be configured (if supported)",
+    "steps": [
+      "Step 1: Connect first Gmail account",
+      "Step 2: Try to add second Gmail account",
+      "Step 3: Verify multi-account support or clear limitation message",
+      "Step 4: Test account switching if supported"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Agent responses are generated within acceptable time",
+    "steps": [
+      "Step 1: Send various queries to agents",
+      "Step 2: Measure response times",
+      "Step 3: Verify average response under 3 seconds",
+      "Step 4: Verify no queries take over 10 seconds"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "OpenAI streaming responses work (if implemented)",
+    "steps": [
+      "Step 1: Send query that generates long response",
+      "Step 2: Observe response delivery",
+      "Step 3: Verify streaming if implemented",
+      "Step 4: Verify good user experience during generation"
+    ],
+    "passes": false
+  },
+  {
+    "category": "style",
+    "description": "Agent avatar/icon is displayed with messages",
+    "steps": [
+      "Step 1: Send messages to different agents",
+      "Step 2: Verify each agent has distinct avatar",
+      "Step 3: Verify avatars appear with messages",
+      "Step 4: Verify visual distinction between agents"
+    ],
+    "passes": false
+  },
+  {
+    "category": "style",
+    "description": "User messages have distinct visual style from agents",
+    "steps": [
+      "Step 1: Send user messages and receive agent responses",
+      "Step 2: Compare visual styling",
+      "Step 3: Verify clear distinction (color, alignment, etc.)",
+      "Step 4: Verify easy to tell who sent each message"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Code blocks in messages are syntax highlighted",
+    "steps": [
+      "Step 1: Send or receive message with code block",
+      "Step 2: Verify code is formatted in monospace",
+      "Step 3: Verify syntax highlighting if applicable",
+      "Step 4: Verify code is readable"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Lists in messages are formatted correctly",
+    "steps": [
+      "Step 1: Receive message with bullet list",
+      "Step 2: Receive message with numbered list",
+      "Step 3: Verify both render correctly",
+      "Step 4: Verify proper indentation and bullets"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Headings in messages are styled distinctly",
+    "steps": [
+      "Step 1: Receive message with markdown headings",
+      "Step 2: Verify headings are visually distinct",
+      "Step 3: Verify heading hierarchy is clear",
+      "Step 4: Verify formatting enhances readability"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Inline formatting (bold, italic) renders correctly",
+    "steps": [
+      "Step 1: Receive message with bold text",
+      "Step 2: Receive message with italic text",
+      "Step 3: Verify both render correctly",
+      "Step 4: Verify combined formatting works (bold italic)"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Long code blocks are scrollable or collapsible",
+    "steps": [
+      "Step 1: Receive message with very long code block",
+      "Step 2: Verify code doesn't overflow horizontally",
+      "Step 3: Verify scrolling or wrapping works",
+      "Step 4: Verify usability is maintained"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "User can copy text from messages",
+    "steps": [
+      "Step 1: Select text in a message",
+      "Step 2: Copy the text",
+      "Step 3: Paste elsewhere",
+      "Step 4: Verify text copied correctly"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "User can copy code blocks easily",
+    "steps": [
+      "Step 1: Find code block in message",
+      "Step 2: Look for copy button or select code",
+      "Step 3: Copy the code",
+      "Step 4: Verify code copied with proper formatting"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Emojis render correctly in messages",
+    "steps": [
+      "Step 1: Send message with emojis",
+      "Step 2: Receive message with emojis",
+      "Step 3: Verify emojis display correctly",
+      "Step 4: Verify emoji rendering is consistent"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Message timestamps update relatively (e.g., '5 min ago')",
+    "steps": [
+      "Step 1: Send message and note timestamp",
+      "Step 2: Wait a few minutes",
+      "Step 3: Verify timestamp updates to relative time",
+      "Step 4: Verify older messages show absolute time/date"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "New message indicator appears when scrolled up",
+    "steps": [
+      "Step 1: Scroll up in chat history",
+      "Step 2: Receive new message",
+      "Step 3: Verify indicator appears",
+      "Step 4: Click indicator and verify scroll to bottom"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Chat auto-scrolls to bottom on new messages",
+    "steps": [
+      "Step 1: Ensure chat is scrolled to bottom",
+      "Step 2: Send message or receive response",
+      "Step 3: Verify chat automatically scrolls to show new message",
+      "Step 4: Verify smooth scroll animation"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Chat maintains scroll position when loading history",
+    "steps": [
+      "Step 1: Scroll to middle of long chat history",
+      "Step 2: Load more messages or refresh",
+      "Step 3: Verify scroll position is maintained",
+      "Step 4: Verify no jarring jumps"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Search within chat history works",
+    "steps": [
+      "Step 1: Open chat search feature",
+      "Step 2: Search for specific text",
+      "Step 3: Verify matching messages are found",
+      "Step 4: Verify can navigate between matches"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "User can delete individual messages",
+    "steps": [
+      "Step 1: Long-press or right-click on message",
+      "Step 2: Select delete option",
+      "Step 3: Confirm deletion",
+      "Step 4: Verify message is removed from chat"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "User can edit their own messages (if supported)",
+    "steps": [
+      "Step 1: Long-press or right-click on own message",
+      "Step 2: Select edit option",
+      "Step 3: Make changes",
+      "Step 4: Save and verify message is updated"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Message delivery status is indicated (sent/delivered/read)",
+    "steps": [
+      "Step 1: Send a message",
+      "Step 2: Observe message status indicator",
+      "Step 3: Verify status updates appropriately",
+      "Step 4: Verify visual indicator is clear"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Failed messages can be retried",
+    "steps": [
+      "Step 1: Simulate message failure",
+      "Step 2: Verify failure is indicated",
+      "Step 3: Find retry option",
+      "Step 4: Retry and verify message sends successfully"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Draft messages are saved automatically",
+    "steps": [
+      "Step 1: Start typing a message",
+      "Step 2: Close app or navigate away",
+      "Step 3: Return to chat",
+      "Step 4: Verify draft is preserved"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App handles system notifications correctly",
+    "steps": [
+      "Step 1: Enable notifications for app",
+      "Step 2: Receive new message while app is backgrounded",
+      "Step 3: Verify notification appears",
+      "Step 4: Tap notification and verify opens to correct chat"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Notification permissions are requested appropriately",
+    "steps": [
+      "Step 1: Launch app for first time",
+      "Step 2: Verify notification permission request",
+      "Step 3: Grant or deny permission",
+      "Step 4: Verify app respects permission choice"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App badge shows unread message count (if applicable)",
+    "steps": [
+      "Step 1: Receive messages while app is closed",
+      "Step 2: Check app icon",
+      "Step 3: Verify badge shows unread count",
+      "Step 4: Open app and verify badge clears"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Background sync works to fetch new data",
+    "steps": [
+      "Step 1: Have app in background",
+      "Step 2: Send new emails to account",
+      "Step 3: Open app",
+      "Step 4: Verify new emails are synced and visible"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App handles being killed and restarted",
+    "steps": [
+      "Step 1: Use app normally",
+      "Step 2: Force quit the app",
+      "Step 3: Restart app",
+      "Step 4: Verify app state is restored",
+      "Step 5: Verify no data loss"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Memory usage is reasonable during extended use",
+    "steps": [
+      "Step 1: Use app for 1 hour continuously",
+      "Step 2: Monitor memory usage",
+      "Step 3: Verify no memory leaks",
+      "Step 4: Verify performance doesn't degrade"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Performance is good with large chat history",
+    "steps": [
+      "Step 1: Accumulate 500+ messages in chat",
+      "Step 2: Test scrolling performance",
+      "Step 3: Test sending new messages",
+      "Step 4: Verify no lag or slowdown"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Voice input works for composing messages (if supported)",
+    "steps": [
+      "Step 1: Find voice input button",
+      "Step 2: Speak a message",
+      "Step 3: Verify speech is transcribed correctly",
+      "Step 4: Send message and verify it works"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Share extension works to share content to app (if supported)",
+    "steps": [
+      "Step 1: From another app, share content",
+      "Step 2: Select this app as share target",
+      "Step 3: Verify content is received correctly",
+      "Step 4: Verify can process shared content"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Widget provides quick access to app (if supported)",
+    "steps": [
+      "Step 1: Add app widget to home screen",
+      "Step 2: Verify widget displays correctly",
+      "Step 3: Interact with widget",
+      "Step 4: Verify widget functions as expected"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Siri shortcuts work for common tasks (if supported)",
+    "steps": [
+      "Step 1: Create Siri shortcut for app action",
+      "Step 2: Invoke shortcut via Siri",
+      "Step 3: Verify action completes correctly",
+      "Step 4: Verify integration works smoothly"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App complies with iOS App Store guidelines",
+    "steps": [
+      "Step 1: Review app against App Store guidelines",
+      "Step 2: Verify privacy policy is present",
+      "Step 3: Verify required disclosures are included",
+      "Step 4: Prepare for App Store submission"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App complies with Google Play Store guidelines",
+    "steps": [
+      "Step 1: Review app against Play Store guidelines",
+      "Step 2: Verify privacy policy is present",
+      "Step 3: Verify required permissions are justified",
+      "Step 4: Prepare for Play Store submission"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Analytics/telemetry respects user privacy (if implemented)",
+    "steps": [
+      "Step 1: Review analytics implementation",
+      "Step 2: Verify no personal data is collected without consent",
+      "Step 3: Verify user can opt out",
+      "Step 4: Verify compliance with privacy requirements"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Crash reporting works without exposing user data",
+    "steps": [
+      "Step 1: Trigger a test crash",
+      "Step 2: Verify crash is reported",
+      "Step 3: Review crash report",
+      "Step 4: Verify no sensitive user data in report"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "App version and build info is accessible",
+    "steps": [
+      "Step 1: Navigate to settings or about section",
+      "Step 2: Find version information",
+      "Step 3: Verify version number is displayed",
+      "Step 4: Verify build number is shown"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Update mechanism is in place for future releases",
+    "steps": [
+      "Step 1: Review update strategy",
+      "Step 2: Verify app can check for updates",
+      "Step 3: Verify update flow is smooth",
+      "Step 4: Plan for version migration if needed"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Feature flags can enable/disable functionality",
+    "steps": [
+      "Step 1: Review feature flag implementation",
+      "Step 2: Toggle a feature flag",
+      "Step 3: Verify feature is enabled/disabled correctly",
+      "Step 4: Verify no breaking changes"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "A/B testing infrastructure works (if implemented)",
+    "steps": [
+      "Step 1: Set up A/B test variant",
+      "Step 2: Verify different users see different variants",
+      "Step 3: Verify analytics track variant performance",
+      "Step 4: Verify can roll out winning variant"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Production error monitoring is configured",
+    "steps": [
+      "Step 1: Review error monitoring setup",
+      "Step 2: Trigger test error",
+      "Step 3: Verify error is captured in monitoring tool",
+      "Step 4: Verify alerts are configured"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Performance monitoring tracks key metrics",
+    "steps": [
+      "Step 1: Review performance monitoring setup",
+      "Step 2: Verify key metrics are tracked (load time, API response, etc.)",
+      "Step 3: Verify can identify performance regressions",
+      "Step 4: Set up alerts for performance issues"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Logging is appropriate for production troubleshooting",
+    "steps": [
+      "Step 1: Review logging configuration",
+      "Step 2: Verify sufficient detail for debugging",
+      "Step 3: Verify no excessive logging impacting performance",
+      "Step 4: Verify logs can be accessed when needed"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Database migrations work correctly (when implemented)",
+    "steps": [
+      "Step 1: Review SQLite schema (when implemented)",
+      "Step 2: Test migration from old schema to new",
+      "Step 3: Verify data is preserved during migration",
+      "Step 4: Verify no data loss or corruption"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Local storage quota is managed appropriately",
+    "steps": [
+      "Step 1: Use app to accumulate local data",
+      "Step 2: Monitor storage usage",
+      "Step 3: Verify old data is cleaned up if needed",
+      "Step 4: Verify app doesn't exceed reasonable storage limits"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Backup and restore functionality works (if implemented)",
+    "steps": [
+      "Step 1: Create backup of app data",
+      "Step 2: Clear app data",
+      "Step 3: Restore from backup",
+      "Step 4: Verify all data is restored correctly"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Cloud sync works across devices (when implemented)",
+    "steps": [
+      "Step 1: Make changes on device A",
+      "Step 2: Wait for sync",
+      "Step 3: Open app on device B",
+      "Step 4: Verify changes are synced",
+      "Step 5: Test bi-directional sync"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Sync conflicts are resolved gracefully (when implemented)",
+    "steps": [
+      "Step 1: Make conflicting changes on two devices offline",
+      "Step 2: Bring both devices online",
+      "Step 3: Verify conflict is detected",
+      "Step 4: Verify conflict resolution works correctly"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Offline changes sync when connection restored",
+    "steps": [
+      "Step 1: Make changes while offline",
+      "Step 2: Queue changes locally",
+      "Step 3: Restore connection",
+      "Step 4: Verify changes sync automatically"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "End-to-end encryption works correctly (when implemented)",
+    "steps": [
+      "Step 1: Review E2E encryption implementation",
+      "Step 2: Send encrypted message",
+      "Step 3: Verify message is encrypted in transit and at rest",
+      "Step 4: Verify only client can decrypt"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Encryption key management is secure (when implemented)",
+    "steps": [
+      "Step 1: Review key generation",
+      "Step 2: Verify keys are stored securely",
+      "Step 3: Verify keys never leave device unencrypted",
+      "Step 4: Test key rotation if applicable"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Zero-knowledge architecture is maintained (goal)",
+    "steps": [
+      "Step 1: Review server-side code",
+      "Step 2: Verify server cannot read user data",
+      "Step 3: Verify encryption/decryption only on client",
+      "Step 4: Document zero-knowledge guarantees"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Subscription payment flow works correctly",
+    "steps": [
+      "Step 1: Navigate to subscription screen",
+      "Step 2: Select $19/month plan",
+      "Step 3: Complete payment",
+      "Step 4: Verify subscription is activated",
+      "Step 5: Verify premium features are unlocked"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Free trial works correctly (if offered)",
+    "steps": [
+      "Step 1: Start free trial",
+      "Step 2: Verify trial period is tracked",
+      "Step 3: Verify features are accessible during trial",
+      "Step 4: Verify conversion prompt at trial end"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Subscription renewal works automatically",
+    "steps": [
+      "Step 1: Subscribe to monthly plan",
+      "Step 2: Wait for renewal date",
+      "Step 3: Verify subscription renews automatically",
+      "Step 4: Verify payment is processed correctly"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "User can cancel subscription",
+    "steps": [
+      "Step 1: Navigate to subscription management",
+      "Step 2: Select cancel subscription",
+      "Step 3: Confirm cancellation",
+      "Step 4: Verify subscription cancels at end of period",
+      "Step 5: Verify access continues until period ends"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Subscription status is synced across devices",
+    "steps": [
+      "Step 1: Subscribe on device A",
+      "Step 2: Open app on device B",
+      "Step 3: Verify subscription status is synced",
+      "Step 4: Verify premium features work on both devices"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Receipt validation works correctly",
+    "steps": [
+      "Step 1: Complete subscription purchase",
+      "Step 2: Verify receipt is validated with App Store/Play Store",
+      "Step 3: Verify subscription cannot be faked",
+      "Step 4: Verify validation happens on backend"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Referral program works (if implemented)",
+    "steps": [
+      "Step 1: Generate referral link",
+      "Step 2: Share link with new user",
+      "Step 3: New user signs up via link",
+      "Step 4: Verify both users receive referral rewards"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Customer support is accessible",
+    "steps": [
+      "Step 1: Navigate to help/support section",
+      "Step 2: Find contact method",
+      "Step 3: Submit test support request",
+      "Step 4: Verify request is received and acknowledged"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "FAQ or knowledge base is helpful",
+    "steps": [
+      "Step 1: Access FAQ section",
+      "Step 2: Search for common question",
+      "Step 3: Verify answer is clear and helpful",
+      "Step 4: Verify common issues are documented"
+    ],
+    "passes": false
+  }
+]

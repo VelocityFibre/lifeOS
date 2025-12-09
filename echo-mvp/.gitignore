@@ -1,0 +1,66 @@
+# Environment Variables (contains secrets)
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build Output
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Databases (local development only)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pm2-*.log
+
+# IDE
+.vscode/
+.idea/
+*.sw?
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+*~
+
+# Temporary files
+*.tmp
+.cache/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Expo (frontend)
+expo-app/.expo/
+expo-app/dist/
+expo-app/web-build/
+
+# Deployment scripts with passwords
+deploy-lifeos-fast.sh
+
+# Session summaries and progress (too large for git)
+session-*.txt
+claude-progress.txt
+
+# Documentation with example tokens
+README.md
+PROGRESS*.md
+START*.md
