@@ -2,6 +2,9 @@ require("dotenv/config");
 const express = require("express");
 const cors = require("cors");
 const { initializeMastra, getMastra } = require("../config/mastra");
+const { callClaudeCode } = require("../agents/claude-code.agent");
+const { getConversationHistory: getGmailHistory, addToConversation: addToGmailConversation } = require("../agents/gmail.agent");
+const { getConversationHistory: getWhatsAppHistory, addToConversation: addToWhatsAppConversation } = require("../agents/whatsapp.agent");
 
 import type { Request, Response } from "express";
 
@@ -30,7 +33,7 @@ app.get("/health", (req: Request, res: Response) => {
 app.get("/api/agents", (req: Request, res: Response) => {
   // In Mastra 0.23.1, agents are stored internally.
   // We'll return the list of agent names we registered.
-  const agents = ["gmailAgent"]; // Hardcoded for now, will be dynamic when we add more
+  const agents = ["gmailAgent", "claudeCodeAgent", "whatsappAgent"];
   res.json({
     success: true,
     agents,
@@ -58,15 +61,80 @@ app.post("/api/agents/:agentId/chat", async (req: Request, res: Response) => {
       return res.status(404).json({
         success: false,
         error: `Agent '${agentId}' not found`,
-        availableAgents: ["gmailAgent"],
+        availableAgents: ["gmailAgent", "claudeCodeAgent", "whatsappAgent"],
       });
     }
 
     // Generate response
-    const result = await agent.generate(message, {
-      resourceId: userId || "anonymous",
-      threadId: userId || "anonymous",
-    });
+    let result;
+
+    // Special handling for Claude Code agent - use SDK directly
+    if (agentId === 'claudeCodeAgent') {
+      const responseText = await callClaudeCode(message, "/home/louisdup/Agents/lifeOS");
+      result = { text: responseText };
+    } else if (agentId === 'gmailAgent') {
+      // Gmail agent with conversation history
+      const userIdKey = userId || "anonymous";
+
+      // Get conversation history
+      const history = getGmailHistory(userIdKey);
+
+      // Add user message to history
+      addToGmailConversation(userIdKey, "user", message);
+
+      // Build context-aware message with conversation history
+      let contextMessage = message;
+      if (history.length > 1) {
+        // Include last few messages as context
+        const recentHistory = history.slice(-6); // Last 6 messages (3 exchanges)
+        const contextStr = recentHistory
+          .map((msg: any) => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`)
+          .join('\n');
+        contextMessage = `Conversation history:\n${contextStr}\n\nCurrent message: ${message}`;
+      }
+
+      result = await agent.generate(contextMessage, {
+        resourceId: userIdKey,
+        threadId: userIdKey,
+      });
+
+      // Add agent response to history
+      addToGmailConversation(userIdKey, "assistant", result.text);
+    } else if (agentId === 'whatsappAgent') {
+      // WhatsApp agent with conversation history
+      const userIdKey = userId || "anonymous";
+
+      // Get conversation history
+      const history = getWhatsAppHistory(userIdKey);
+
+      // Add user message to history
+      addToWhatsAppConversation(userIdKey, "user", message);
+
+      // Build context-aware message with conversation history
+      let contextMessage = message;
+      if (history.length > 1) {
+        // Include last few messages as context
+        const recentHistory = history.slice(-6); // Last 6 messages (3 exchanges)
+        const contextStr = recentHistory
+          .map((msg: any) => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`)
+          .join('\n');
+        contextMessage = `Conversation history:\n${contextStr}\n\nCurrent message: ${message}`;
+      }
+
+      result = await agent.generate(contextMessage, {
+        resourceId: userIdKey,
+        threadId: userIdKey,
+      });
+
+      // Add agent response to history
+      addToWhatsAppConversation(userIdKey, "assistant", result.text);
+    } else {
+      // Use standard Mastra agent.generate() for other agents
+      result = await agent.generate(message, {
+        resourceId: userId || "anonymous",
+        threadId: userId || "anonymous",
+      });
+    }
 
     res.json({
       success: true,
@@ -96,7 +164,10 @@ async function startServer() {
       console.log(`   Health:  GET  http://localhost:${PORT}/health`);
       console.log(`   Agents:  GET  http://localhost:${PORT}/api/agents`);
       console.log(`   Chat:    POST http://localhost:${PORT}/api/agents/:agentId/chat`);
-      console.log(`\n🤖 Available agents: gmailAgent (with Gmail MCP tools)`);
+      console.log(`\n🤖 Available agents:`);
+      console.log(`   - gmailAgent: Gmail MCP tools`);
+      console.log(`   - claudeCodeAgent: Claude Code SDK (Max plan)`);
+      console.log(`   - whatsappAgent: WhatsApp Web integration`);
       console.log();
     });
   } catch (error) {
